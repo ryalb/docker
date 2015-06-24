@@ -45,36 +45,28 @@ RUN apt-get install --assume-yes \
   git \
   npm
 
-# RUN npm install -g gulp
-#
-# #RUN dpkg-reconfigure locales && locale-gen C.UTF-8 && /usr/sbin/update-locale LANG=C.UTF-8
-#
-# #ENV LC_ALL C.UTF-8
-#
-# RUN ssh-keygen -f /root/.ssh/id_rsa -N ""
-# RUN mkdir -p /var/lock/apache2 /var/run/apache2 /var/run/sshd /var/log/supervisor
-# #RUN chsh -s $(which zsh)
-#
-# COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-# COPY authorized_keys /root/.ssh/.
-# COPY *.sh /tmp/.
-#
-# ADD init.sh /usr/local/bin/init.sh
-# RUN chmod +x /usr/local/bin/init.sh
-# RUN /usr/local/bin/init.sh
-#
-# ADD apache.sh /usr/local/bin/apache.sh
-# RUN chmod +x /usr/local/bin/apache.sh
-# RUN /usr/local/bin/apache.sh
-#
-# ADD doppler.sh /usr/local/bin/doppler.sh
-# RUN chmod +x /usr/local/bin/doppler.sh
-# RUN /usr/local/bin/doppler.sh
-#
-# EXPOSE 22:22
-# EXPOSE 80:80
-# EXPOSE 443:443
-#
-# RUN echo "ALL DONE"
-#
-# CMD ["/usr/bin/supervisord"]
+RUN npm install -g gulp
+
+RUN ssh-keygen -f /root/.ssh/id_rsa -N ""
+RUN mkdir -p /var/lock/apache2 /var/run/apache2 /var/run/sshd /var/log/supervisor
+
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY authorized_keys /root/.ssh/.
+COPY *.sh /tmp/.
+COPY *.sh /tmp/.
+
+ADD init.sh /usr/local/bin/init.sh
+RUN chmod +x /usr/local/bin/init.sh
+RUN /usr/local/bin/init.sh
+
+ADD apache.sh /usr/local/bin/apache.sh
+RUN chmod +x /usr/local/bin/apache.sh
+RUN /usr/local/bin/apache.sh
+
+EXPOSE 22
+EXPOSE 80
+EXPOSE 443
+
+RUN echo "ALL DONE"
+
+CMD ["/usr/bin/supervisord"]
