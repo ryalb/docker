@@ -1,4 +1,4 @@
-FROM ryalb/doppler:v1
+FROM ubuntu:14.04
 MAINTAINER Ryan Leite Albuquerque <ryan.leite@gmail.com>
 
 RUN export DEBIAN_FRONTEND=noninteractive
@@ -46,6 +46,8 @@ RUN apt-get install --assume-yes \
   npm
 
 RUN npm install -g gulp
+
+RUN pecl install xdebug
 
 RUN ssh-keygen -f /root/.ssh/id_rsa -N ""
 RUN mkdir -p /var/lock/apache2 /var/run/apache2 /var/run/sshd /var/log/supervisor

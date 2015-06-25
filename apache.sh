@@ -22,9 +22,6 @@ mkdir /var/log/xdebug 2> /dev/null
 echo "Changing xdebug log directory owner to www-data"
 chown www-data:www-data /var/log/xdebug
 
-echo "Installing xdebug"
-pecl install xdebug
-
 # enable modules
 a2enmod rewrite
 a2enmod headers
