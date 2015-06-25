@@ -51,9 +51,9 @@ RUN ssh-keygen -f /root/.ssh/id_rsa -N ""
 RUN mkdir -p /var/lock/apache2 /var/run/apache2 /var/run/sshd /var/log/supervisor
 
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-COPY authorized_keys /root/.ssh/.
-COPY *.sh /tmp/.
-COPY *.sh /tmp/.
+COPY authorized_keys /root/.ssh/
+COPY *.sh /tmp/
+COPY config /config/
 
 ADD init.sh /usr/local/bin/init.sh
 RUN chmod +x /usr/local/bin/init.sh
